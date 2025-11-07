@@ -1,6 +1,6 @@
-# Wav2Vec2 Audio Embedding PCA Visualization
+# Wav2Vec2 Audio Embedding Visualization
 
-This script extracts embeddings from audio files using the Wav2Vec2 model and visualizes how audio embeddings evolve over time in a 2D PCA space.
+This script extracts embeddings from audio files using the Wav2Vec2 model and visualizes how audio embeddings evolve over time in a PCA or LDA space.
 
 ## Features
 
