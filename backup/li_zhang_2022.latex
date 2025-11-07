@@ -1,0 +1,1376 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{longtable,booktabs,array}
+\usepackage{multirow}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\includegraphics[width=6.38889in,height=5.73611in]{vertopal_571f38bd0aba44199dbc50c61f9ee8ea/media/image2.png}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+\includegraphics[width=8.27778in,height=0.26389in]{vertopal_571f38bd0aba44199dbc50c61f9ee8ea/media/image1.png}
+
+\begin{quote}
+\emph{Cross-feature fusion speech emotion recognition based on attention
+mask residual network and Wav2vec2.0} 7
+\end{quote}
+\end{minipage} \\
+\midrule()
+\endhead
+\bottomrule()
+\end{longtable}
+
+\begin{quote}
+not correspond to the target emotions. Furthermore, since the speech
+signals are not of equal length, we split the utterance into segments of
+equal duration of 4s and perform zero-padding on the utterance that
+lasts less than 4s.
+
+\textbf{Table 1}\\
+Hyperparameter configurations in stages 1 and 2.
+
+\textbf{Table 2}\\
+Performance comparisons with existing approaches on the IEMOCAP dataset.
+The `-' implies the lack of this measure, and the best results are
+labeled in bold
+\end{quote}
+
+.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+Method
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Training set
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+WA (\%)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+UAR (\%)
+\end{minipage} \\
+\midrule()
+\endhead
+Chen et al. {[}36{]} (2018) & clear & - & 64.74 \\
+\bottomrule()
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+Chou et al. {[}37{]} (2019)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+clear
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+-
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+61.48
+\end{minipage} \\
+\midrule()
+\endhead
+\bottomrule()
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Stage 1}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Stage 2}
+\end{minipage} \\
+\midrule()
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Hyperparameter Value
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Hyperparameter Value
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Batch size 32
+
+Epoch 400
+
+Weight decay 0.00001
+
+Momentum 0.9
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Batch size 64
+
+Epoch 300
+
+Weight decay 0
+
+Betas (0.93, 0.98)
+\end{quote}
+\end{minipage} \\
+\bottomrule()
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Pepino et al. {[}21{]} (2021)
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+clear
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+-
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+67.20
+\end{minipage} \\
+\midrule()
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Li et al. {[}24{]} (2022)
+\end{quote}
+\end{minipage} & clear & 63.40 & - \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Yue at al. {[}23{]} (2022)
+\end{quote}
+\end{minipage} & clear & 68.29 & - \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Pastor et al. {[}38{]} (2023)
+\end{quote}
+\end{minipage} & clear & - & 65.90 \\
+AM-ResNet & clear & 67.35 & 65.56 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+AM-ResNet+W2V2+CA
+\end{quote}
+\end{minipage} & clear & 68.36 & 67.75 \\
+\bottomrule()
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\toprule()
+\multirow{3}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\emph{3.1.2. Experimental settings}
+\end{quote}
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Etienne et al. {[}26{]} (2018)
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+clear+ambiguous
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+64.50
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+-
+\end{minipage} \\
+& \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Ando et al. {[}27{]} (2018)
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+clear+ambiguous
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+62.60
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+63.70
+\end{quote}
+\end{minipage} \\
+& \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Chou et al. {[}37{]} (2019)
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+clear+ambiguous
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+-
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+61.68
+\end{quote}
+\end{minipage} \\
+\midrule()
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+In this paper, the overall training process mainly consists of two
+\end{quote}
+\end{minipage} &
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Upadhyay et al. {[}39{]} (2024)
+\end{quote}
+\end{minipage}} & \multirow{2}{*}{clear+ambiguous} & \multirow{2}{*}{-}
+& \multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+63.92
+\end{quote}
+\end{minipage}} \\
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+stages: Stage 1 focuses on the training of AM-ResNet, and Stage 2
+\end{quote}
+\end{minipage}} \\
+& \multirow{2}{*}{AM-ResNet} & \multirow{2}{*}{clear+ambiguous} &
+\multirow{2}{*}{67.50} &
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+66.56
+\end{quote}
+\end{minipage}} \\
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+focuses on the feature interaction and fusion between two features, as
+\end{quote}
+\end{minipage}} \\
+& \multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+AM-ResNet+W2V2+CA
+\end{quote}
+\end{minipage}} & \multirow{2}{*}{clear+ambiguous} &
+\multirow{2}{*}{\textbf{70.79}} &
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{72.27}
+\end{quote}
+\end{minipage}} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+well as the classifier. Table 1 lists the detailed configuration of the
+two
+\end{quote}
+\end{minipage} \\
+\bottomrule()
+\end{longtable}
+
+\begin{quote}
+stages.
+
+\textbf{Stage 1}: The proposed AM-ResNet is implemented on PyTorch,
+which is a scientific computing package based on Python. The learn-ing
+rate is kept constant at 0.01 for the first 40 epochs and divided by 10
+and 100 for the next 80 and 280 epochs. Besides, Stochastic Gradient
+
+\textbf{Table 3}\\
+The comparison of cross-validation accuracy between ResNet and M-ResNet
+on the IEMOCAP dataset. The best results are labeled in bold.
+\end{quote}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0909}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0909}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0909}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0909}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0909}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0909}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0909}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0909}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0909}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0909}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.0909}}@{}}
+\toprule()
+\multicolumn{3}{@{}>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.2727} + 4\tabcolsep}}{%
+\multirow{14}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Descent (SGD) algorithm is employed to optimize AM-ResNet.
+
+\textbf{Stage 2}: The AM-ResNet features and the Wav2vec 2.0 features
+are first interacted with and concatenated in the cross-attention
+module, culminating in the generation of cross-fused features.
+Subsequently, these features undergo classification to discern and
+predict the under-lying emotion. The PyTorch package is also used in
+this process. The learning rate is 0.001, and the Adaptive Moment
+Estimation (Adam) algorithm is applied to optimize feature fusion and
+classifier.
+
+\emph{3.1.3. Evaluation metrics}
+
+To measure the accuracy of SER, the experiments employ two popular
+evaluation indicators within the field of emotion recognition: Weighted
+Accuracy (WA) and Unweighted Average Recall (UAR).
+
+WA is applied to balance the total performance of the SER system. It is
+calculated by counting the number of correctly classified samples and
+then dividing by the number of total samples. For a dataset containing
+\emph{N} categories, it can be expressed as
+\end{quote}
+\end{minipage}}} &
+\multirow{2}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+Fold
+\end{minipage}} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1818} + 2\tabcolsep}}{%
+\multirow{2}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+Testing set
+\end{minipage}}} &
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.2727} + 4\tabcolsep}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+ResNet
+\end{minipage}} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1818} + 2\tabcolsep}@{}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+M-ResNet
+\end{quote}
+\end{minipage}} \\
+& & & & & &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1818} + 2\tabcolsep}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+UAR (\%)
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+WA (\%)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+UAR (\%)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+WA (\%)
+\end{quote}
+\end{minipage} \\
+& & & \begin{minipage}[b]{\linewidth}\raggedright
+1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Session1F
+\end{quote}
+\end{minipage} &
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.2727} + 4\tabcolsep}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+72.57
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+73.12
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{73.95}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{75.27}
+\end{quote}
+\end{minipage} \\
+& & & \begin{minipage}[b]{\linewidth}\raggedright
+2
+\end{minipage} &
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.2727} + 4\tabcolsep}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+Session1M
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+68.53
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+66.25
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{69.93}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{68.97}
+\end{quote}
+\end{minipage} \\
+& & & \begin{minipage}[b]{\linewidth}\raggedright
+3
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Session2F
+\end{quote}
+\end{minipage} &
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.2727} + 4\tabcolsep}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+70.59
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+69.09
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{74.41}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{71.43}
+\end{quote}
+\end{minipage} \\
+& & & \begin{minipage}[b]{\linewidth}\raggedright
+4
+\end{minipage} &
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.2727} + 4\tabcolsep}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+Session2M
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{73.01}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{66.12}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+72.31
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+63.79
+\end{quote}
+\end{minipage} \\
+& & & \begin{minipage}[b]{\linewidth}\raggedright
+5
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Session3F
+\end{quote}
+\end{minipage} &
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.2727} + 4\tabcolsep}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{64.34}
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{68.78}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+64.87
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+66.25
+\end{quote}
+\end{minipage} \\
+& & & \begin{minipage}[b]{\linewidth}\raggedright
+6
+\end{minipage} &
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.2727} + 4\tabcolsep}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+Session3M
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{64.38}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+63.31
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+63.94
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{67.11}
+\end{quote}
+\end{minipage} \\
+& & & \begin{minipage}[b]{\linewidth}\raggedright
+7
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Session4F
+\end{quote}
+\end{minipage} &
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.2727} + 4\tabcolsep}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{63.48}
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{73.80}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+62.17
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+68.45
+\end{quote}
+\end{minipage} \\
+& & & \begin{minipage}[b]{\linewidth}\raggedright
+8
+\end{minipage} &
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.2727} + 4\tabcolsep}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+Session4M
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+66.10
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{66.59}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{68.20}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+66.35
+\end{quote}
+\end{minipage} \\
+& & & \begin{minipage}[b]{\linewidth}\raggedright
+9
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Session5F
+\end{quote}
+\end{minipage} &
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.2727} + 4\tabcolsep}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+62.87
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+64.37
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{64.32}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{65.75}
+\end{quote}
+\end{minipage} \\
+& & & \begin{minipage}[b]{\linewidth}\raggedright
+10
+\end{minipage} &
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.2727} + 4\tabcolsep}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+Session5M
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+59.71
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+63.59
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{63.29}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{65.44}
+\end{quote}
+\end{minipage} \\
+& & &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.1818} + 2\tabcolsep}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+Average
+\end{minipage}} &
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.2727} + 4\tabcolsep}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+66.56
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+67.50
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{67.74}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{67.88}
+\end{quote}
+\end{minipage} \\
+& & &
+\multicolumn{8}{>{\raggedright\arraybackslash}p{(\columnwidth - 20\tabcolsep) * \real{0.7273} + 14\tabcolsep}@{}}{%
+\multirow{3}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+{[}23{]}-{[}24{]}, {[}36{]}-{[}38{]} and the methods incorporating both
+clear and am-
+\end{quote}
+\end{minipage}}} \\
+\multirow{2}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+\emph{WA} =
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\emph{i}=1\emph{TPi N}
+\end{quote}
+\end{minipage} &
+\multirow{2}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+(24)
+\end{minipage}} \\
+& \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\emph{N}\\
+\emph{i}=1(\emph{TPi} + \emph{FPi})
+\end{quote}\strut
+\end{minipage} \\
+\midrule()
+\endhead
+\bottomrule()
+\end{longtable}
+
+\begin{quote}
+Since the distribution of samples in each category of emotion datasets
+is often unbalanced, using only WA as an evaluation indicator will lead
+to categories with a larger number of samples dominating. Therefore, UAR
+is proposed to comprehensively measure the recognition perfor-mance of
+all categories. UAR first calculates the recall \emph{Recalli} of each
+category, and then divides the sum of the accuracy rates by the number
+\end{quote}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule()
+\multirow{3}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+of categories \emph{N}:
+\end{minipage}} &
+\multirow{2}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+\emph{Recalli} =
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+\emph{TPi}
+\end{minipage} &
+\multirow{2}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+(25)
+\end{minipage}} \\
+& & \begin{minipage}[b]{\linewidth}\raggedright
+\emph{TPi} + \emph{FNi}
+\end{minipage} \\
+& \begin{minipage}[b]{\linewidth}\raggedright
+\emph{UAR}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\emph{N}\\
+\emph{i}=1\emph{Recalli}
+\end{quote}\strut
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+(26)
+\end{minipage} \\
+\midrule()
+\endhead
+& = & \emph{N} & \\
+\bottomrule()
+\end{longtable}
+
+\begin{quote}
+\emph{\textbf{3.2. Comparison results}}
+
+The evaluation of recognition accuracy involves comparative analy-ses
+between our proposed framework and various competitive methods,
+encompassing the methods only utilizing clear emotion utterances
+{[}21{]},
+
+biguous emotion utterances {[}26, 27{]}. The detailed results of this
+com-parative assessment are presented in Table 2.
+
+In all approaches, our proposed framework achieves more robust
+per-formance both in UAR and WA when trained with both clear and
+am-biguous utterances. Remarkably, substantial improvements in UAR are
+observed. Compared with the methods that only use clear emotion
+ut-terances {[}21{]}, {[}23{]}-{[}24{]}, {[}36{]}-{[}38{]}, AM-ResNet
+only uses clear emotion utterances as the training set and surpasses the
+methods described in {[}24{]}, {[}36{]}, {[}37{]} in UAR or WA. In
+addition, AM-ResNet+W2V2+CA uses only clear emotion utterances, as the
+training set outperforms all methods in either UAR or WA. This indicates
+that the proposed AM-ResNet+W2V2+CA can leverage the self-supervised
+learning capabil-ities of Wav2vec 2.0 to address data sparsity concerns,
+and the cross-attention module provides a suitable way to fuse the
+features learned using supervised and self-supervised methods.
+
+In addition, compared with the methods {[}26, 27{]} using both clear and
+ambiguous emotion utterances, the proposed AM-ResNet using both clear
+and ambiguous emotion utterances also exceeds them. In
+\end{quote}
+
+\includegraphics[width=2.25417in,height=2.24812in]{vertopal_571f38bd0aba44199dbc50c61f9ee8ea/media/image4.png}\includegraphics[width=2.25278in,height=2.24674in]{vertopal_571f38bd0aba44199dbc50c61f9ee8ea/media/image5.png}\includegraphics[width=6.45833in,height=8.19444in]{vertopal_571f38bd0aba44199dbc50c61f9ee8ea/media/image6.png}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.0769}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.0769}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.0769}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.0769}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.0769}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.0769}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.0769}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.0769}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.0769}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.0769}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.0769}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.0769}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.0769}}@{}}
+\toprule()
+\multicolumn{13}{@{}>{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{1.0000} + 24\tabcolsep}@{}}{%
+\multirow{2}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Sadness
+\end{quote}
+\end{minipage}}} \\
+ \\
+\midrule()
+\endhead
+Happiness & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+52.61
+\end{quote}
+\end{minipage} & 16.71 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.1538} + 2\tabcolsep}}{%
+8.06} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.1538} + 2\tabcolsep}}{%
+22.63} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Happiness
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+54.80
+\end{quote}
+\end{minipage} & 17.57 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.1538} + 2\tabcolsep}}{%
+9.54} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+18.09
+\end{quote}
+\end{minipage} \\
+Neutral & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+14.15
+\end{quote}
+\end{minipage} & 55.50 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.1538} + 2\tabcolsep}}{%
+9.45} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.1538} + 2\tabcolsep}}{%
+20.90} & Neutral & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+14.20
+\end{quote}
+\end{minipage} & 58.16 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.1538} + 2\tabcolsep}}{%
+11.12} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+16.52
+\end{quote}
+\end{minipage} \\
+Anger & 8.20 & 9.13 &
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.2308} + 4\tabcolsep}}{%
+77.88} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+4.79
+\end{quote}
+\end{minipage} & Anger & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+7.83
+\end{quote}
+\end{minipage} & 8.96 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.1538} + 2\tabcolsep}}{%
+79.97} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+3.25
+\end{quote}
+\end{minipage} \\
+Sadness & 5.54 & 12.14 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.1538} + 2\tabcolsep}}{%
+2.08} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.1538} + 2\tabcolsep}}{%
+80.24} & Sadness & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+5.06
+\end{quote}
+\end{minipage} & 13.07 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.1538} + 2\tabcolsep}}{%
+3.86} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+78.02
+\end{quote}
+\end{minipage} \\
+\multicolumn{7}{@{}>{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.5385} + 12\tabcolsep}}{%
+(a) The confusion matrix of speaker-independent experiments on} &
+\multicolumn{6}{>{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.4615} + 10\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+(b) The confusion matrix of speaker-independent experiments on
+\end{quote}
+\end{minipage}} \\
+\multicolumn{7}{@{}>{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.5385} + 12\tabcolsep}}{%
+the IEMOCAP dataset using ResNet (Average UAR=66.56\%)} &
+\multicolumn{6}{>{\raggedright\arraybackslash}p{(\columnwidth - 24\tabcolsep) * \real{0.4615} + 10\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+the IEMOCAP dataset using M-ResNet (Average UAR=67.74\%)
+\end{quote}
+\end{minipage}} \\
+\bottomrule()
+\end{longtable}
+
+\textbf{Fig. 8.} ResNet VS. M-ResNet.
+
+\begin{quote}
+detail, the above methods apply ambiguous emotion utterances to im-prove
+classification performance, but the effect of silent frames and
+un-voiced speech on network learning is ignored. In contrast, AM-ResNet
+
+\textbf{Table 4}\\
+The comparison of cross-validation accuracy between M-ResNet and
+AM-ResNet on the IEMOCAP dataset. The best results are labeled in bold.
+\end{quote}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+employs maximum amplitude difference detection and mask residual
+\end{minipage} &
+\multirow{3}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+Fold
+\end{minipage}} &
+\multirow{3}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Testing set
+\end{quote}
+\end{minipage}} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.2857} + 2\tabcolsep}}{%
+\multirow{2}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+M-ResNet
+\end{minipage}}} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.2857} + 2\tabcolsep}@{}}{%
+\multirow{2}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+AM-ResNet
+\end{quote}
+\end{minipage}}} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+blocks acting on preprocessing and network respectively to reduce the
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+influence of silent frames. Meanwhile, the attention mechanism reduces
+\end{minipage} & & & \begin{minipage}[b]{\linewidth}\raggedright
+UAR (\%)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+WA (\%)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+UAR (\%)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+WA (\%)
+\end{quote}
+\end{minipage} \\
+\midrule()
+\endhead
+redundancy in emotional information caused by unvoiced speech to the &
+\multirow{2}{*}{1} &
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Session1F
+\end{quote}
+\end{minipage}} & \multirow{2}{*}{\textbf{73.95}} &
+\multirow{2}{*}{\textbf{75.27}} & \multirow{2}{*}{72.19} &
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+73.12
+\end{quote}
+\end{minipage}} \\
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+utmost extent.
+\end{quote}
+\end{minipage}} \\
+& \multirow{2}{*}{2} &
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Session1M
+\end{quote}
+\end{minipage}} & \multirow{2}{*}{69.93} &
+\multirow{2}{*}{\textbf{68.97}} & \multirow{2}{*}{\textbf{71.22}} &
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+69.81
+\end{quote}
+\end{minipage}} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+In particular, compared with AM-ResNet+W2V2+CA using only
+\end{quote}
+\end{minipage} \\
+clear emotion utterances as the training set, AM-ResNet+W2V2+CA & 3 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Session2F
+\end{quote}
+\end{minipage} & \textbf{74.41} & 71.43 & 72.32 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+71.43
+\end{quote}
+\end{minipage} \\
+using both clear and ambiguous emotion utterances obtained improve- &
+\multirow{2}{*}{4} &
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Session2M
+\end{quote}
+\end{minipage}} & \multirow{2}{*}{72.31} & \multirow{2}{*}{63.79} &
+\multirow{2}{*}{\textbf{74.05}} &
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{68.69}
+\end{quote}
+\end{minipage}} \\
+\multirow{2}{*}{ments in both UAR and WA, especially in UAR. This
+phenomenon can} \\
+& \multirow{2}{*}{5} &
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Session3F
+\end{quote}
+\end{minipage}} & \multirow{2}{*}{64.87} & \multirow{2}{*}{66.25} &
+\multirow{2}{*}{\textbf{69.33}} &
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{71.31}
+\end{quote}
+\end{minipage}} \\
+also be observed on AM-ResNet. This means that the ambiguous emo- \\
+tion utterances contain emotional cues, and the proposed framework can &
+6 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Session3M
+\end{quote}
+\end{minipage} & 63.94 & \textbf{67.11} & \textbf{64.20} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+63.88
+\end{quote}
+\end{minipage} \\
+utilize the ambiguous emotion utterances, which alleviates data limita-
+& 7 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Session4F
+\end{quote}
+\end{minipage} & 62.17 & 68.45 & \multirow{2}{*}{\textbf{64.85}} &
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{74.06}
+\end{quote}
+\end{minipage}} \\
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+tion problems and supports the increase of UAR and WA.
+\end{quote}
+\end{minipage}} & \multirow{3}{*}{8} &
+\multirow{3}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Session4M
+\end{quote}
+\end{minipage}} & \multirow{3}{*}{\textbf{68.20}} &
+\multirow{3}{*}{66.35} \\
+& & & & & \multirow{2}{*}{67.07} &
+\multirow{2}{*}{\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{66.83}
+\end{quote}
+\end{minipage}} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+The above comparative analyses of the proposed framework and the
+\end{quote}
+\end{minipage} \\
+existing methods have shown the advancement of our proposed frame- & 9 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Session5F
+\end{quote}
+\end{minipage} & \textbf{64.32} & 65.75 & 63.82 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{66.13}
+\end{quote}
+\end{minipage} \\
+work. In the subsequent experiments, AM-ResNet, Wav2vec 2.0 and &
+\multirow{2}{*}{10} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Session5M
+\end{quote}
+\end{minipage} & \textbf{63.29} & 65.44 & 60.35 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{66.13}
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+the cross-attention module will be analyzed.
+\end{quote}
+\end{minipage} & & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Average
+\end{quote}
+\end{minipage} & 67.74 & 67.88 & \textbf{67.90} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{68.87}
+\end{quote}
+\end{minipage} \\
+\bottomrule()
+\end{longtable}
+
+\begin{quote}
+\emph{\textbf{3.3. Analysis of AM-ResNet}}
+
+\emph{3.3.1. Analysis of mask res-block}
+
+The silent region and the zero padding part have non-zero values after
+passing through the BN layer, which may interfere with the learning of
+the network and affect the recognition accuracy of the model. In mask
+res-block, the mask records the valid and invalid regions by marking
+each sampling point in the speech signal. This can keep the value of the
+silent region and speech region with zero padding always 0. The analysis
+of the mask res-block is given to verify its effectiveness on the
+
+can mitigate the impact of the silent frames and zero-padded areas of
+the speech signal after the BN layer is no longer 0 on the model
+recog-nition accuracy. Furthermore, Fig. 8 shows the speaker-independent
+classification performance per emotion of ResNet and M-ResNet on the
+IEMOCAP dataset. Comparative analysis with Fig. 8 (a) reveals a
+rela-tive improvement in the recognition accuracy of happiness, neutral
+and anger in Fig. 8 (b). Specifically, the number of happiness
+misclassifica-tions as sadness decreased by 4.54\%, indicating that the
+mask res-block
+
+SER task. can reduce the effect of invalid information on the SER task.
+
+To demonstrate the effectiveness of the proposed mask res-block,
+comparative experiments are conducted on the IEMOCAP dataset be-tween
+ResNet utilizing the original res-block and M-ResNet employing the mask
+res-block. All experimental parameters and the training set
+(clear+ambiguous) remain constant, except for the different res-blocks
+(original res-block and mask res-block) used. And the cross-entropy loss
+function is applied in both cases.
+
+As illustrated in Table 3, the average performance of the proposed
+M-ResNet integrating the mask res-block, surpasses that of ResNet by
+1.18\% in UAR and 0.14\% in WA. This indicates that the mask res-block
+
+\emph{3.3.2. Analysis of attention mechanism}\\
+The unvoiced speech in speech signals can affect the performance of the
+model due to its aperiodicity, so it is essential to assign differ-ent
+weights to the unvoiced and voiced speech by dynamically creating weight
+for each sampling point in the time dimension. In AM-ResNet, an
+attention mechanism is designed to discriminate the unvoiced and voiced
+speech and help to fuse it properly for better classification ac-curacy.
+The analysis of the attention mechanism is given to verify its
+effectiveness on the SER task.
+\end{quote}
+
+\includegraphics[width=2.25417in,height=2.24812in]{vertopal_571f38bd0aba44199dbc50c61f9ee8ea/media/image5.png}\includegraphics[width=2.25417in,height=2.24723in]{vertopal_571f38bd0aba44199dbc50c61f9ee8ea/media/image7.png}\includegraphics[width=2.25417in,height=2.24723in]{vertopal_571f38bd0aba44199dbc50c61f9ee8ea/media/image8.png}\includegraphics[width=2.25417in,height=2.24812in]{vertopal_571f38bd0aba44199dbc50c61f9ee8ea/media/image9.png}\includegraphics[width=5.875in,height=8.19444in]{vertopal_571f38bd0aba44199dbc50c61f9ee8ea/media/image10.png}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0833}}@{}}
+\toprule()
+\multicolumn{12}{@{}>{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{1.0000} + 22\tabcolsep}@{}}{%
+\multirow{2}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Sadness
+\end{quote}
+\end{minipage}}} \\
+ \\
+\midrule()
+\endhead
+Happiness & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+54.80
+\end{quote}
+\end{minipage} & 17.57 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.1667} + 2\tabcolsep}}{%
+9.54} & 18.09 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Happiness
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+55.06
+\end{quote}
+\end{minipage} & 18.94 & 7.80 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.1667} + 2\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+18.20
+\end{quote}
+\end{minipage}} \\
+Neutral & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+14.20
+\end{quote}
+\end{minipage} & 58.16 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.1667} + 2\tabcolsep}}{%
+11.12} & 16.52 & Neutral & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+11.54
+\end{quote}
+\end{minipage} & 60.37 & 8.38 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.1667} + 2\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+19.71
+\end{quote}
+\end{minipage}} \\
+Anger & 7.83 & 8.96 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.1667} + 2\tabcolsep}}{%
+79.97} & 3.25 & Anger & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+7.77
+\end{quote}
+\end{minipage} & 9.76 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.1667} + 2\tabcolsep}}{%
+77.93} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+4.54
+\end{quote}
+\end{minipage} \\
+Sadness & 5.06 & 13.07 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.1667} + 2\tabcolsep}}{%
+3.86} & 78.02 & Sadness & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+3.96
+\end{quote}
+\end{minipage} & 14.99 & 2.64 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.1667} + 2\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+78.40
+\end{quote}
+\end{minipage}} \\
+\multicolumn{6}{@{}>{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.5000} + 10\tabcolsep}}{%
+(a) The confusion matrix of speaker-independent experiments on} &
+\multicolumn{6}{>{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.5000} + 10\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+(b) The confusion matrix of speaker-independent experiments on
+\end{quote}
+\end{minipage}} \\
+\multicolumn{6}{@{}>{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.5000} + 10\tabcolsep}}{%
+the IEMOCAP dataset using M-ResNet (Average UAR=67.74\%)} &
+\multicolumn{6}{>{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.5000} + 10\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+the IEMOCAP dataset using AM-ResNet (Average UAR=67.93\%)
+\end{quote}
+\end{minipage}} \\
+\bottomrule()
+\end{longtable}
+
+\textbf{Fig. 9.} M-ResNet VS. AM-ResNet.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 18\tabcolsep) * \real{0.1000}}@{}}
+\toprule()
+\multirow{2}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+Happiness
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+Happiness
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Neutral
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Anger
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Sadness
+\end{minipage} &
+\multirow{2}{*}{\begin{minipage}[b]{\linewidth}\raggedright
+Happiness
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\raggedright
+Happiness
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Neutral
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Anger
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Sadness
+\end{quote}
+\end{minipage} \\
+& \begin{minipage}[b]{\linewidth}\raggedright
+55.06
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+18.94
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+7.80
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+18.20
+\end{minipage} & & \begin{minipage}[b]{\linewidth}\raggedright
+58.81
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+18.61
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+14.44
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+8.15
+\end{quote}
+\end{minipage} \\
+\midrule()
+\endhead
+Neutral & 11.54 & 60.37 & 8.38 & 19.71 & Neutral & 10.84 & 67.07 & 9.98
+& \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+12.11
+\end{quote}
+\end{minipage} \\
+Anger & 7.77 & 9.76 & 77.93 & 4.54 & Anger & 6.92 & 8.18 & 81.92 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+2.97
+\end{quote}
+\end{minipage} \\
+Sadness & 3.96 & 14.99 & 2.64 & 78.40 & Sadness & 4.68 & 10.29 & 3.74 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+81.29
+\end{quote}
+\end{minipage} \\
+\bottomrule()
+\end{longtable}
+
+\begin{quote}
+(a) Confusion matrix of speaker-independent experiments on the IEMOCAP
+dataset using AM-ResNet (Average UAR=67.93\%)
+
+(b) The confusion matrix of speaker-independent experiments on the
+IEMOCAP dataset using AM-ResNet+W2V2+CA (Average UAR=72.21\%)
+\end{quote}
+
+\textbf{Fig. 10.} AM-ResNet VS. AM-ResNet+W2V2+CA.
+
+\begin{quote}
+To evaluate the effect of the attention mechanism, comparative
+ex-periments are conducted on the aforementioned dataset, presenting the
+
+of happiness as anger by 1.74\%, further indicating that the attention
+mechanism can provide a solution for the redundant information of the
+
+performance of M-ResNet with the Attention Mechanism (AM-ResNet) speech
+signals.
+
+in contrast to M-ResNet without the attention mechanism. All param-
+
+eter configurations and training set (clear+ambiguous) are consistent
+
+across the experiments, with the sole variation being the presence or
+absence of the attention mechanism. The cross-entropy loss function is
+employed in both cases.
+
+The result is shown in Table 4, in which one can see that the atten-tion
+mechanism improves both in WA and UAR, as it reduces the re-dundant
+information about unvoiced speech and focuses on the voiced speech.
+Besides, the confusion matrixes of speaker-independent exper-iments on
+the IEMOCAP dataset using M-ResNet and AM-ResNet are displayed in Fig.
+9. A comparison between Fig. 9 (a) and (b) highlights
+
+\emph{\textbf{3.4. Analysis of the Wav2vec 2.0 features and
+cross-attention}}
+
+In this ablation experiment, we demonstrate the impact of the Wav2vec
+2.0 features and cross-attention module on the proposed framework by
+comparing the classification performance of the proposed AM-ResNet,
+AM-ResNet+W2V2+FC, and AM-ResNet+W2V2+CA. All parameter configurations
+and training set (clear+ambiguous) are consistent across the
+experiments. The Adam algorithm is applied to optimize both cases.
+\end{quote}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+that Fig. 9 (a) show a relative improvement in the recognition accuracy
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+As displayed in Table 5,
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+the average performance of AM-
+\end{quote}
+\end{minipage} \\
+\midrule()
+\endhead
+\bottomrule()
+\end{longtable}
+
+\begin{quote}
+of happiness, neutral and sadness, while reducing the misclassification
+
+ResNet+W2V2+CA is degraded in both UAR and WA compared to
+\end{quote}
+
+\end{document}

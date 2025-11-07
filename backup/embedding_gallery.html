@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHILL</title>
+    <style>
+        body {
+            font-family: 'Source Code Pro', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e6e6e6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(30, 30, 46, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 25px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #64ffda;
+            margin-bottom: 25px;
+            margin-block-start: 0px;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        .gallery-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 15px;
+            background: rgba(40, 40, 60, 0.7);
+            border-radius: 12px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .generation-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: nowrap;
+            padding: 20px;
+            background: rgba(45, 55, 75, 0.7);
+            border-radius: 12px;
+            border: 1px solid rgba(100, 200, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 25px;
+        }
+        
+        .generation-controls h2 {
+            color: #64ccf5;
+            margin: 0;
+            font-size: 1.5em;
+            text-shadow: 0 0 8px rgba(100, 204, 245, 0.3);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        select, button, input {
+            padding: 12px 15px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            background: rgba(30, 30, 50, 0.8);
+            color: #e6e6e6;
+            transition: all 0.3s ease;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: #64ffda;
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+        }
+        
+        button {
+            background: linear-gradient(135deg, #64ffda 0%, #4db6ac 100%);
+            color: #0a192f;
+            cursor: pointer;
+            border: none;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(100, 255, 218, 0.2);
+        }
+        
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(100, 255, 218, 0.4);
+        }
+        
+        button:disabled {
+            background: linear-gradient(135deg, #555 0%, #444 100%);
+            color: #888;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .visualization {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        #embedding-chart {
+            width: 100%;
+            height: 570px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 12px;
+            background: rgba(20, 20, 35, 0.7);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .lda #embedding-chart {
+            height: 200px;
+        }
+        
+        .audio-player {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .file-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .file-item {
+            padding: 15px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(40, 40, 60, 0.5);
+        }
+        
+        .file-item:hover {
+            background: rgba(60, 60, 90, 0.7);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .file-item.selected {
+            background: linear-gradient(135deg, #64ffda 0%, #4db6ac 100%);
+            color: #0a192f;
+            font-weight: 600;
+            border-color: transparent;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background: rgba(40, 40, 60, 0.7);
+            border-radius: 10px;
+            height: 12px;
+            margin-top: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #64ffda 0%, #4db6ac 100%);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.2s ease;
+        }
+        
+        .status {
+            text-align: center;
+            color: #a8b2d1;
+            font-style: italic;
+            font-size: 1.1em;
+            padding: 15px;
+            background: rgba(40, 40, 60, 0.5);
+            border-radius: 10px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        /* Audio player styling */
+        audio {
+            width: 100%;
+            height: 50px;
+            border-radius: 10px;
+        }
+        
+        /* Custom checkbox styling */
+        input[type="checkbox"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #64ffda;
+            border-radius: 4px;
+            position: relative;
+            cursor: pointer;
+            background: rgba(30, 30, 50, 0.8);
+            flex-shrink: 0; /* Prevent shrinking in flex containers */
+        }
+        
+        input[type="checkbox"]:checked::before {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: 5px;
+            width: 8px;
+            height: 12px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>-=|| CHILL-O-METER ||=- </h1>
+        
+        <div class="generation-controls">
+            <h2>Generate New Embeddings</h2>
+            <input type="text" id="input-dir" placeholder="Input directory path" style="padding: 8px; border-radius: 5px; border: 1px solid #ddd;">
+            <select id="analysis-type">
+                <option value="pca">PCA</option>
+                <option value="lda">LDA</option>
+            </select>
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="use-downstream">
+                    <label for="use-downstream">Downstream</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="specify-layer">
+                    <label for="specify-layer">Specify Layer</label>
+                </div>
+                <input type="number" id="layer-number" placeholder="Layer #" min="0" max="12" style="width: 80px; padding: 12px 15px; border-radius: 8px; border: 1px solid rgba(100, 255, 218, 0.3); background: rgba(30, 30, 50, 0.8); color: #e6e6e6; display: none;">
+            </div>
+            <button id="generate-btn">Generate</button>
+            <div id="generation-status" style="margin-left: 10px; color: #666; font-style: italic;"></div>
+        </div>
+        
+        <div class="gallery-container">
+            <div class="controls">
+                <select id="file-selector">
+                    <option value="">Select an audio file...</option>
+                </select>
+                <button id="play-btn" disabled>Play</button>
+                <button id="pause-btn" disabled>Pause</button>
+                <button id="stop-btn" disabled>Stop</button>
+                <div class="checkbox-item" style="margin-left: 10px;">
+                    <input type="checkbox" id="autoplay-next">
+                    <label for="autoplay-next">Autoplay Next</label>
+                </div>
+                <div class="checkbox-item" style="margin-left: 10px;">
+                    <input type="checkbox" id="zero-centering">
+                    <label for="zero-centering">Zero Centering</label>
+                </div>
+            </div>
+            
+            <div class="audio-player">
+                <audio id="audio-player" controls style="width: 100%;"></audio>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <div class="visualization">
+                <canvas id="embedding-chart"></canvas>
+                <div style="position: relative; margin-top: 10px;">
+                    <canvas id="waterfall-chart" style="display: none; border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 12px; background: rgba(20, 20, 35, 0.7);"></canvas>
+                    <canvas id="dial-canvas" style="position: absolute; top: 0; left: 0; pointer-events: none;"></canvas>
+                </div>
+            </div>
+            
+            <div class="status" id="status">Select an audio file to begin</div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let fileIndex = null;
+        let allEmbeddingsData = {};
+        let currentEmbeddings = null;
+        let currentFilename = null;
+        let animationId = null;
+        let currentFrame = 0;
+        let isPlaying = false;
+        let chartCtx = null;
+        let chartData = null;
+        let isLDA = false;
+        let playedFrames = new Set(); // Track recently played frames for fading effect
+        let playedFrameAges = {}; // Track ages of played frames
+        const FADE_DURATION = 100; // Number of frames to keep highlight
+        // FPS counter variables
+        let frameCount = 0;
+        let lastTime = performance.now();
+        let currentFPS = 0;
+        // Waterfall variables
+        let lastWaterfallFrame = -1; // Track the last frame drawn in waterfall
+        
+        // Amplitude threshold for silence detection (-36dB in linear scale)
+        const AMPLITUDE_THRESHOLD = 0.01585;
+        
+        // Background canvas for static scatter points
+        let backgroundCanvas = null;
+        let backgroundCtx = null;
+        let backgroundDrawn = false;
+        
+        // Waterfall variables
+        let waterfallCanvas = null;
+        let waterfallCtx = null;
+        let waterfallBuffer = null;
+        let waterfallBufferCtx = null;
+        let waterfallHeight = 300; // Height of waterfall display (increased by 150px)
+        let waterfallWidth = 0; // Will be set based on canvas width
+        
+        // Dial variables
+        let dialCanvas = null;
+        let dialCtx = null;
+        
+        // Moving average variables
+        let lastSamples = []; // Store last N X values for moving average
+        const maxSamples = 350; // Maximum number of samples to track
+        
+        // Moving average line variables
+        let previousMovingAverage = 0; // Store previous moving average value
+        let currentMovingAverage = 0; // Store current moving average value
+        
+        // DOM elements
+        const fileSelector = document.getElementById('file-selector');
+        const playBtn = document.getElementById('play-btn');
+        const pauseBtn = document.getElementById('pause-btn');
+        const stopBtn = document.getElementById('stop-btn');
+        const audioPlayer = document.getElementById('audio-player');
+        const progressBar = document.getElementById('progress-bar');
+        const statusElement = document.getElementById('status');
+        const chartCanvas = document.getElementById('embedding-chart');
+        
+        // Initialize the application
+        async function init() {
+            chartCtx = chartCanvas.getContext('2d');
+            waterfallCanvas = document.getElementById('waterfall-chart');
+            waterfallCtx = waterfallCanvas.getContext('2d');
+            dialCanvas = document.getElementById('dial-canvas');
+            dialCtx = dialCanvas.getContext('2d');
+            await loadFileIndex();
+            
+            // Set autoplay next checkbox to be on by default
+            document.getElementById('autoplay-next').checked = true;
+            
+            // If LDA mode is active, initialize the waterfall buffer
+            if (isLDA) {
+                // Use a small delay to ensure the DOM is fully rendered
+                setTimeout(() => {
+                    // Get the width from the container
+                    const container = document.querySelector('.visualization');
+                    const width = container.clientWidth;
+                    initWaterfallBuffer(width, waterfallHeight);
+                }, 100);
+            }
+            
+            setupEventListeners();
+            
+            // Add resize event listener
+            window.addEventListener('resize', handleResize);
+        }
+        
+        // Handle window resize
+        function handleResize() {
+            if (isLDA && currentFilename) {
+                // Get the width from the container
+                const container = document.querySelector('.visualization');
+                const width = container.clientWidth;
+                initWaterfallBuffer(width, waterfallHeight);
+            }
+        }
+        
+        // Initialize waterfall buffer
+        function initWaterfallBuffer(width, height) {
+            if (!isLDA) return;
+            
+            waterfallWidth = width;
+            
+            // Set waterfall canvas dimensions
+            waterfallCanvas.width = width;
+            waterfallCanvas.height = waterfallHeight;
+            waterfallCanvas.style.display = 'block';
+            
+            // Set dial canvas dimensions to match waterfall canvas
+            dialCanvas.width = width;
+            dialCanvas.height = waterfallHeight;
+            dialCanvas.style.display = 'block';
+            
+            // Create offscreen buffer for waterfall
+            waterfallBuffer = document.createElement('canvas');
+            waterfallBuffer.width = width;
+            waterfallBuffer.height = waterfallHeight;
+            waterfallBufferCtx = waterfallBuffer.getContext('2d');
+            
+            // Clear buffer with dark background
+            waterfallBufferCtx.fillStyle = 'rgba(20, 20, 35, 1)';
+            waterfallBufferCtx.fillRect(0, 0, width, waterfallHeight);
+            
+            // Clear dial canvas and draw initial state
+            dialCtx.clearRect(0, 0, width, waterfallHeight);
+            
+            // Draw initial dial state (center line at 0)
+            const centerX = width / 2;
+            dialCtx.fillStyle = 'rgba(255, 200, 80, 0.75)';
+            dialCtx.fillRect(centerX - 1.5, 1, 3, waterfallHeight);
+            
+            // Draw initial scale lines
+            const minX = -7, maxX = 7; // Default range
+            const range = maxX - minX;
+            
+            // Draw zero line
+            const zeroX = ((0 - minX) / range) * width;
+            dialCtx.fillStyle = 'rgba(255, 200, 80, 0.75)';
+            dialCtx.fillRect(zeroX - 1, 1, 2, waterfallHeight);
+            
+            // Draw integer lines
+            for (let i = Math.floor(minX); i <= Math.ceil(maxX); i++) {
+                if (i === 0) continue; // Skip zero line as it's already drawn
+                const x = ((i - minX) / range) * width;
+                dialCtx.fillStyle = `rgba(255, 255, 255, 0.2)`;
+                dialCtx.fillRect(x, 0, 1, waterfallHeight);
+            }
+            
+            // Draw half-integer lines
+            for (let i = Math.floor(minX); i < Math.ceil(maxX); i++) {
+                const halfValue = i + 0.5;
+                const x = ((halfValue - minX) / range) * width;
+                dialCtx.fillStyle = `rgba(255, 255, 255, 0.05)`;
+                dialCtx.fillRect(x, 0, 1, waterfallHeight);
+            }
+            
+            // Draw initial value text
+            dialCtx.font = '12pt "Source Code Pro"';
+            dialCtx.fillStyle = 'rgba(100, 255, 218, 0.8)';
+            dialCtx.textAlign = 'left';
+            dialCtx.textBaseline = 'bottom';
+            dialCtx.fillText('0.00', 8, waterfallHeight - 8);
+        }
+        
+        // Scroll waterfall buffer at fixed interval
+        let lastWaterfallScrollTime = 0;
+        const WATERFALL_SCROLL_INTERVAL = 1000 / 20; // ~50ms for 20Hz
+        function scrollWaterfallBuffer() {
+            if (!isLDA || !waterfallBufferCtx || !waterfallCtx) return;
+            
+            const now = performance.now();
+            // Only scroll if enough time has passed
+            if (now - lastWaterfallScrollTime < WATERFALL_SCROLL_INTERVAL) return;
+            
+            lastWaterfallScrollTime = now;
+            
+            // Scroll buffer content down by 1 pixel using canvas drawing (more efficient than getImageData)
+            waterfallBufferCtx.drawImage(
+                waterfallBuffer, 
+                0, 0, waterfallBuffer.width, waterfallBuffer.height - 1,
+                0, 1, waterfallBuffer.width, waterfallBuffer.height - 1
+            );
+            
+            // Clear the top row
+            waterfallBufferCtx.fillStyle = 'rgba(20, 20, 35, 1)';
+            waterfallBufferCtx.fillRect(0, 0, waterfallBuffer.width, 1);
+            
+            // Copy buffer to visible waterfall canvas
+            waterfallCtx.clearRect(0, 0, waterfallCanvas.width, waterfallCanvas.height);
+            waterfallCtx.drawImage(waterfallBuffer, 0, 0);
+        }
+        
+        // Variables to store current peak value for waterfall dots
+        let currentPeakValue = 1.0;
+        
+        // Enhanced color cache with size limit
+        const MAX_COLOR_CACHE_SIZE = 500;
+        const colorCache = new Map();
+        
+        // Quantized color function for better cache efficiency
+        function getQuantizedColor(hue, saturation, lightness) {
+            // Quantize values to reduce cache misses
+            const qHue = Math.round(hue / 5) * 5;
+            const qSaturation = Math.round(saturation / 10) * 10;
+            const qLightness = Math.round(lightness / 5) * 5;
+            
+            const colorKey = `${qHue}_${qSaturation}_${qLightness}`;
+            
+            // Check cache first
+            if (colorCache.has(colorKey)) {
+                return colorCache.get(colorKey);
+            }
+            
+            // Create new color
+            const color = `hsl(${qHue}, ${qSaturation}%, ${qLightness}%)`;
+            
+            // Manage cache size
+            if (colorCache.size >= MAX_COLOR_CACHE_SIZE) {
+                // Remove first entry (least recently used in Map)
+                const firstKey = colorCache.keys().next().value;
+                if (firstKey) colorCache.delete(firstKey);
+            }
+            
+            // Add to cache
+            colorCache.set(colorKey, color);
+            return color;
+        }
+        
+        // Draw current position to waterfall buffer
+        function drawToWaterfallBuffer(currentX, currentY, minX, maxX, minY, maxY, width, height, dialOnly = false) {
+            if (!isLDA || !waterfallBufferCtx || !waterfallCtx) return;
+            
+            // Skip points where X is near zero (to avoid plotting along zero line) unless we're updating the dial only
+            if (!dialOnly && Math.abs(currentX) < 0.001) return;
+            
+            // Store current peak value for use in waterfall dots
+            // This will be set by the caller based on the current frame's peak value
+            // Default to 1.0 if not set
+            if (typeof currentPeakValue === 'undefined') currentPeakValue = 1.0;
+            
+            // Only add current X value to samples array for moving average when not in dial-only mode
+            if (!dialOnly) {
+                lastSamples.push(currentX);
+                // Keep only the last N samples
+                if (lastSamples.length > maxSamples) {
+                    lastSamples.shift(); // Remove oldest sample
+                }
+            }
+            
+            // Calculate weighted moving average of last N samples
+            // Using a fixed weighting scheme that doesn't change with array size
+            let weightedSum = 0;
+            let totalWeight = 0;
+            
+            // Use a fixed weighting scheme based on a maximum array size
+            // This prevents the weights from changing as the array fills up
+            const maxArraySize = maxSamples; // Use the maxSamples constant
+            for (let i = 0; i < lastSamples.length; i++) {
+                // Calculate normalized index based on fixed maxArraySize
+                const normalizedIndex = i / (maxArraySize - 1 || 1);
+                const weight = Math.pow(normalizedIndex, 1.7);
+                weightedSum += lastSamples[i] * weight;
+                totalWeight += weight;
+            }
+            // Avoid division by zero
+            const movingAverage = totalWeight > 0 ? weightedSum / totalWeight : lastSamples[lastSamples.length - 1] || 0;
+            
+            // Update moving average values for line drawing
+            previousMovingAverage = currentMovingAverage;
+            currentMovingAverage = movingAverage;
+            
+            // 2-pole IIR filter implementation
+            // Filter coefficients (adjust for desired smoothing)
+            // Adjusted for 100x lower cutoff frequency (10x reduction applied twice)
+            //const a1 = 0.99;
+            //const a2 = 0.009;
+            //const b0 = 1 - a1 - a2; // This will be 0.001
+            
+            // Initialize filter state if needed
+            //if (typeof lastX1 === 'undefined') lastX1 = currentX;
+            //if (typeof lastX2 === 'undefined') lastX2 = currentX;
+            //if (typeof lastY1 === 'undefined') lastY1 = currentX;
+            //if (typeof lastY2 === 'undefined') lastY2 = currentX;
+            
+            // Apply filter 
+            //const filteredX = b0 * currentX + a1 * lastX1 + a2 * lastX2;
+            //lastX2 = lastX1;
+            //lastX1 = currentX;
+            //lastY2 = lastY1;
+            //lastY1 = filteredX;
+            
+            //const movingAverage = filteredX; // Using filtered value instead of moving average
+            
+            // Map current position to waterfall coordinates
+            const waterfallX = ((currentX - minX) / (maxX - minX)) * width;
+            const waterfallY = 0; // Always draw at the top row
+            
+            // Draw current position as a colored dot at the top of the buffer
+            // Only draw the dot if this is not a dial-only update
+            if (!dialOnly && !isNaN(waterfallX) && !isNaN(waterfallY)) {
+                // Create color based on position (similar to the main chart)
+                const hue = ((currentX - minX) / (maxX - minX)) * 360;
+                const saturation = 100;
+                // Base lightness calculation
+                let lightness = 50 + ((currentY - minY) / (maxY - minY)) * 50;
+                
+                // Adjust lightness based on amplitude (peak value)
+                // Apply amplitude-based lightness adjustment (+-10)
+                const lightnessAdjustment = (currentPeakValue - 0.4) * 120; // Scale peakValue (0-1) to +-10 adjustment
+                lightness = Math.max(0, Math.min(100, lightness + lightnessAdjustment));
+                
+                // Use optimized quantized color function
+                waterfallBufferCtx.fillStyle = getQuantizedColor(hue, saturation, lightness);
+                
+                // Draw a small dot representing the current position
+                waterfallBufferCtx.beginPath();
+                //waterfallBufferCtx.arc(waterfallX, waterfallY+1, 1.4, 0, Math.PI * 2);
+                waterfallBufferCtx.fillRect(waterfallX, waterfallY, 2.5, 2.5);
+                waterfallBufferCtx.fill();
+            }
+            
+            // Draw moving average line on waterfall buffer (with transparency)
+            // Only draw if this is not a dial-only update and amplitude is above threshold
+            if (!dialOnly && currentPeakValue >= AMPLITUDE_THRESHOLD*2) {
+                // Map current and previous moving averages to waterfall coordinates
+                const currentAvgX = ((currentMovingAverage - minX) / (maxX - minX)) * width;
+                const previousAvgX = ((previousMovingAverage - minX) / (maxX - minX)) * width;
+                
+                // Create color based on current moving average position (same as dial but 50% transparent)
+                const hue = ((currentMovingAverage - minX) / (maxX - minX)) * 360;
+                const saturation = 100;
+                // Calculate base lightness (same formula as waterfall dots)
+                const baseLightness = 50 + ((currentY - minY) / (maxY - minY)) * 50;
+                const lightness = 40 + ((currentY - minY) / (maxY - minY)) * 50;
+                
+                // Use optimized quantized color function with 50% transparency
+                waterfallBufferCtx.strokeStyle = getQuantizedColor(hue, saturation, lightness);
+                waterfallBufferCtx.globalAlpha = 0.7; // 70% transparent
+                waterfallBufferCtx.lineWidth = 2;
+                
+                // Draw line segment from current moving average at top (y=0) to previous moving average one pixel down (y=1)
+                waterfallBufferCtx.beginPath();
+                waterfallBufferCtx.moveTo(currentAvgX, 0);
+                waterfallBufferCtx.lineTo(previousAvgX, 1);
+                waterfallBufferCtx.stroke();
+                
+                // Reset global alpha to fully opaque for subsequent drawing
+                waterfallBufferCtx.globalAlpha = 1.0;
+            }
+            
+            // Draw moving average dial (vertical line) on the dial canvas
+            // Clear the dial canvas
+            dialCtx.clearRect(0, 0, width, waterfallHeight);
+            
+            // Map moving average to waterfall coordinates
+            const avgWaterfallX = ((movingAverage - minX) / (maxX - minX)) * width;
+            
+            if (!isNaN(avgWaterfallX)) {
+                // Create color based on position (same as waterfall dots but 1.5x brighter)
+                // We'll use the currentX and currentY values for color calculation
+                // but apply the filtered movingAverage for position
+                const hue = ((movingAverage - minX) / (maxX - minX)) * 360;
+                const saturation = 100;
+                // Calculate base lightness (same formula as waterfall dots)
+                const baseLightness = 50 + ((currentY - minY) / (maxY - minY)) * 50;
+                const lightness = 40 + ((currentY - minY) / (maxY - minY)) * 50;
+                // Multiply by 1.5 but cap at 100%
+                //const lightness = Math.min(100, baseLightness * 1.0);
+                
+                // Use optimized quantized color function for dial as well
+                dialCtx.fillStyle = getQuantizedColor(hue, saturation, lightness);
+                dialCtx.fillRect(avgWaterfallX - 1.5, 1, 3, waterfallHeight);
+            }
+            
+            // Draw 12pt number in lower left corner of dial canvas
+            dialCtx.font = '12pt "Source Code Pro"';
+            dialCtx.fillStyle = 'rgba(100, 255, 218, 0.8)';
+            dialCtx.textAlign = 'left';
+            dialCtx.textBaseline = 'bottom';
+            // Position 8px in from left and bottom
+            // Display moving average value rounded to two decimal places
+            dialCtx.fillText(movingAverage.toFixed(2), 8, waterfallHeight - 8);
+
+            dialCtx.fillStyle = 'rgba(100, 255, 218, 0.1)';
+            // Draw FPS counter in lower right corner of dial canvas
+            if (isPlaying && currentFPS > 0) {
+                dialCtx.textAlign = 'right';
+                dialCtx.fillText(`${currentFPS} FPS`, waterfallWidth - 8, waterfallHeight - 8);
+            }
+            
+            // Draw scale lines on the dial canvas with fade effect
+            // Draw lines for integer values and x.5 values
+            const range = maxX - minX;
+            const pixelsPerUnit = width / range;
+            
+            // Define fade boundaries
+            const fadeLeft = -4;
+            const fadeRight = 4;
+            
+            // Find the starting and ending integer values to draw lines for
+            const startInt = Math.floor(minX);
+            const endInt = Math.ceil(maxX);
+            
+            // Helper function to calculate faded opacity
+            function calculateFadedOpacity(xValue, baseOpacity) {
+                // No fade if within the core region
+                if (xValue >= fadeLeft && xValue <= fadeRight) {
+                    return baseOpacity;
+                }
+                
+                // Calculate fade factor
+                let fadeFactor;
+                if (xValue < fadeLeft) {
+                    // Fade from fadeLeft to minX
+                    const fadeRange = fadeLeft - minX;
+                    if (fadeRange <= 0) return baseOpacity * 0.25; // Edge case
+                    fadeFactor = (fadeLeft - xValue) / fadeRange;
+                } else {
+                    // Fade from fadeRight to maxX
+                    const fadeRange = maxX - fadeRight;
+                    if (fadeRange <= 0) return baseOpacity * 0.25; // Edge case
+                    fadeFactor = (xValue - fadeRight) / fadeRange;
+                }
+                
+                // Clamp fade factor between 0 and 1
+                fadeFactor = Math.max(0, Math.min(1, fadeFactor));
+                
+                // Linear fade from base opacity to 25% of base opacity
+                return baseOpacity * (1 - fadeFactor * 0.75);
+            }
+            
+            // Draw zero line with 75% opacity (unchanged)
+            if (0 >= minX && 0 <= maxX) {
+                const zeroX = ((0 - minX) / range) * width;
+                const opacity = calculateFadedOpacity(0, 0.75);
+                dialCtx.fillStyle = `rgba(255, 200, 80, ${opacity})`;
+                dialCtx.fillRect(zeroX-1, 1, 2, waterfallHeight);
+            }
+            
+            // Draw other integer lines with 25% opacity (reduced from 50%)
+            for (let i = startInt; i <= endInt; i++) {
+                // Skip zero line as it's already drawn
+                if (i === 0) continue;
+                // Only draw lines within the visible range
+                if (i >= minX && i <= maxX) {
+                    const x = ((i - minX) / range) * width;
+                    const opacity = calculateFadedOpacity(i, 0.2);
+                    dialCtx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+                    dialCtx.fillRect(x, 0, 1, waterfallHeight);
+                }
+            }
+            
+            // Draw lines for x.5 values with 12.5% opacity (reduced from 25%)
+            for (let i = startInt; i < endInt; i++) {
+                const halfValue = i + 0.5;
+                // Only draw lines within the visible range
+                if (halfValue >= minX && halfValue <= maxX) {
+                    const x = ((halfValue - minX) / range) * width;
+                    const opacity = calculateFadedOpacity(halfValue, 0.05);
+                    dialCtx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+                    dialCtx.fillRect(x, 0, 1, waterfallHeight);
+                }
+            }
+        }
+        
+        // Load file index
+        async function loadFileIndex() {
+            try {
+                const response = await fetch('embedding_data/file_index.json');
+                fileIndex = await response.json();
+                
+                // Check if LDA data is available
+                isLDA = fileIndex.lda || false;
+                
+                // Apply LDA class to container if LDA data is available
+                const container = document.querySelector('.container');
+                if (isLDA) {
+                    container.classList.add('lda');
+                } else {
+                    container.classList.remove('lda');
+                }
+                
+                // Show/hide waterfall canvas based on LDA mode
+                if (isLDA) {
+                    waterfallCanvas.style.display = 'block';
+                } else {
+                    waterfallCanvas.style.display = 'none';
+                }
+                
+                // Populate file selector
+                fileIndex.files.forEach(file => {
+                    // Create a unique key for each file (filename + class_label for class files)
+                    const key = file.class_label && file.class_label !== 'main' ? 
+                        `${file.filename}__${file.class_label}` : file.filename;
+                    const option = document.createElement('option');
+                    option.value = key;
+                    option.textContent = isLDA ? `${file.filename} (Class: ${file.class_label})` : file.filename;
+                    fileSelector.appendChild(option);
+                });
+                
+                // Load all embedding data
+                await loadAllEmbeddings(isLDA);
+                
+                updateStatus(`Loaded ${fileIndex.files.length} audio files${isLDA ? ' with LDA' : ''}`);
+            } catch (error) {
+                console.error('Error loading file index:', error);
+                updateStatus('Error loading file index');
+            }
+        }
+        
+        // Load all embedding data
+        async function loadAllEmbeddings(isLDA = false) {
+            try {
+                // Create an array of promises for fetching all embedding data
+                const fetchPromises = fileIndex.files.map(async (file) => {
+                    const response = await fetch(`embedding_data/${file.data_file}`);
+                    const data = await response.json();
+                    // Create a unique key for each file (filename + class_label for class files)
+                    const key = file.class_label && file.class_label !== 'main' ? 
+                        `${file.filename}__${file.class_label}` : file.filename;
+                    return { key, data, file };
+                });
+                
+                // Wait for all fetch requests to complete
+                const results = await Promise.all(fetchPromises);
+                
+                // Process the results and populate allEmbeddingsData
+                results.forEach(({ key, data, file }) => {
+                    allEmbeddingsData[key] = {
+                        embeddings: data.embeddings_2d,
+                        peaks: data.peaks || [], // Load peaks data if available
+                        class_label: data.class_label || 'main',
+                        filename: file.filename
+                    };
+                });
+                
+                updateStatus(`Loaded embeddings for ${Object.keys(allEmbeddingsData).length} files`);
+            } catch (error) {
+                console.error('Error loading embeddings:', error);
+                updateStatus('Error loading embeddings');
+            }
+        }
+        
+        // Set up event listeners
+        function setupEventListeners() {
+            fileSelector.addEventListener('change', handleFileSelect);
+            playBtn.addEventListener('click', playAudio);
+            pauseBtn.addEventListener('click', pauseAudio);
+            stopBtn.addEventListener('click', stopAudio);
+            audioPlayer.addEventListener('timeupdate', updateProgress);
+            audioPlayer.addEventListener('ended', function() {
+                // When audio ends, trigger stop which will handle autoplay
+                stopAudio();
+            });
+            
+            // Generation controls
+            document.getElementById('specify-layer').addEventListener('change', function() {
+                document.getElementById('layer-number').style.display = this.checked ? 'inline-block' : 'none';
+            });
+            
+            document.getElementById('generate-btn').addEventListener('click', generateEmbeddings);
+        }
+        
+        // Generate embeddings
+        async function generateEmbeddings() {
+            const inputDir = document.getElementById('input-dir').value;
+            const analysisType = document.getElementById('analysis-type').value;
+            const useDownstream = document.getElementById('use-downstream').checked;
+            const specifyLayer = document.getElementById('specify-layer').checked;
+            const layerNumber = document.getElementById('layer-number').value;
+            const generateBtn = document.getElementById('generate-btn');
+            const generationStatus = document.getElementById('generation-status');
+            
+            if (!inputDir) {
+                generationStatus.textContent = 'Please enter an input directory path';
+                return;
+            }
+            
+            generationStatus.textContent = 'Generating embeddings...';
+            generateBtn.disabled = true;
+            
+            try {
+                // Prepare request data
+                const requestData = {
+                    input_dir: inputDir,
+                    analysis_type: analysisType,
+                    use_downstream: useDownstream,
+                    specify_layer: specifyLayer,
+                    layer_number: layerNumber
+                };
+                
+                // Send request to backend API
+                const response = await fetch('/api/generate-embeddings', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    generationStatus.textContent = 'Embeddings generated successfully! Reloading gallery...';
+                    
+                    // Reload the gallery
+                    await loadFileIndex();
+                    resetPlayer();
+                    
+                    generationStatus.textContent = 'Gallery updated successfully!';
+                    setTimeout(() => {
+                        generationStatus.textContent = '';
+                    }, 3000);
+                } else {
+                    generationStatus.textContent = 'Error: ' + result.message;
+                    console.error('Error details:', result.error);
+                }
+                
+            } catch (error) {
+                console.error('Error generating embeddings:', error);
+                generationStatus.textContent = 'Error generating embeddings: ' + error.message;
+            } finally {
+                generateBtn.disabled = false;
+            }
+        }
+        
+        // Handle file selection
+        function handleFileSelect(event) {
+            const filename = event.target.value;
+            if (!filename) {
+                resetPlayer();
+                return;
+            }
+            
+            loadFile(filename);
+        }
+        
+        // Load a specific file
+        function loadFile(key) {
+            currentFilename = key;
+            currentEmbeddings = allEmbeddingsData[key].embeddings;
+            currentFrame = 0;
+            
+            // Reset background drawn flag so it gets redrawn with new current file
+            backgroundDrawn = false;
+            
+            // Get the class label and filename from the key
+            let filename, classLabel;
+            if (key.includes('__')) {
+                // This is a class file with composite key
+                [filename, classLabel] = key.split('__');
+            } else {
+                // This is a main folder file
+                filename = key;
+                classLabel = 'main';
+            }
+            
+            // Set audio source based on class
+            let audioPath;
+            if (classLabel === 'main') {
+                // Main folder files
+                audioPath = `example_clips/${filename}`;
+            } else {
+                // Class folder files - use the full path from file index
+                const fileEntry = fileIndex.files.find(f => f.filename === filename && f.class_label === classLabel);
+                if (fileEntry && fileEntry.full_path) {
+                    audioPath = `example_clips/${fileEntry.full_path}`;
+                } else {
+                    // Fallback to constructing path from class label and filename
+                    audioPath = `example_clips/${classLabel}/${filename}`;
+                }
+            }
+            audioPlayer.src = audioPath;
+            
+            // Enable buttons
+            playBtn.disabled = false;
+            pauseBtn.disabled = true;
+            stopBtn.disabled = true;
+            
+            // Draw initial chart
+            drawChart();
+            
+            updateStatus(`Loaded ${filename} (Class: ${classLabel})`);
+        }
+        
+        // Play audio
+        function playAudio() {
+            if (!currentFilename) return;
+            
+            audioPlayer.play();
+            isPlaying = true;
+            playBtn.disabled = true;
+            pauseBtn.disabled = false;
+            stopBtn.disabled = false;
+            
+            // Start animation
+            animateEmbeddings();
+            
+            updateStatus(`Playing ${currentFilename}`);
+        }
+        
+        // Pause audio
+        function pauseAudio() {
+            audioPlayer.pause();
+            isPlaying = false;
+            playBtn.disabled = false;
+            pauseBtn.disabled = true;
+            
+            // Stop animation
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+            
+            updateStatus(`Paused ${currentFilename}`);
+        }
+        
+        // Stop audio
+        function stopAudio() {
+            audioPlayer.pause();
+            audioPlayer.currentTime = 0;
+            isPlaying = false;
+            currentFrame = 0;
+            
+            playBtn.disabled = false;
+            pauseBtn.disabled = true;
+            stopBtn.disabled = true;
+            
+            // Stop animation
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+            
+            // Reset chart
+            drawChart();
+            
+            // Check if autoplay next is enabled and there's a next file
+            const autoplayNext = document.getElementById('autoplay-next').checked;
+            if (autoplayNext && currentFilename) {
+                // Find current index in file selector
+                const options = Array.from(fileSelector.options);
+                const currentIndex = options.findIndex(option => option.value === currentFilename);
+                if (currentIndex >= 0 && currentIndex < options.length - 1) {
+                    // Load next file
+                    const nextOption = options[currentIndex + 1];
+                    fileSelector.value = nextOption.value;
+                    loadFile(nextOption.value);
+                    playAudio();
+                    return;
+                }
+            }
+            
+            updateStatus(`Stopped ${currentFilename}`);
+        }
+        
+        // Update progress bar
+        function updateProgress() {
+            const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            progressBar.style.width = `${progress || 0}%`;
+            
+            // Update frame based on progress
+            if (currentEmbeddings && isPlaying) {
+                const frameIndex = Math.floor((audioPlayer.currentTime / audioPlayer.duration) * currentEmbeddings.length);
+                currentFrame = Math.min(frameIndex, currentEmbeddings.length - 1);
+            }
+        }
+        
+        // Animate embeddings
+        function animateEmbeddings() {
+            if (!isPlaying) return;
+            
+            // Calculate FPS
+            frameCount++;
+            const now = performance.now();
+            const delta = now - lastTime;
+            if (delta >= 500) { // Update FPS every 500ms
+                currentFPS = Math.round((frameCount * 1000) / delta);
+                frameCount = 0;
+                lastTime = now;
+            }
+            
+            // Update frame based on audio time
+            const progress = audioPlayer.currentTime / audioPlayer.duration;
+            if (!isNaN(progress)) {
+                const frameIndex = Math.floor(progress * currentEmbeddings.length);
+                currentFrame = Math.min(frameIndex, currentEmbeddings.length - 1);
+            }
+            
+            // Redraw chart
+            drawChart();
+            
+            // Continue animation
+            animationId = requestAnimationFrame(animateEmbeddings);
+        }
+        
+        // Clear waterfall buffer
+        function clearWaterfallBuffer() {
+            if (!isLDA || !waterfallBufferCtx) return;
+            
+            // Clear buffer with dark background
+            waterfallBufferCtx.fillStyle = 'rgba(20, 20, 35, 1)';
+            waterfallBufferCtx.fillRect(0, 0, waterfallBuffer.width, waterfallBuffer.height);
+            
+            // Clear visible waterfall canvas
+            waterfallCtx.clearRect(0, 0, waterfallCanvas.width, waterfallCanvas.height);
+            waterfallCtx.drawImage(waterfallBuffer, 0, 0);
+        }
+        
+        // Draw chart
+        function drawChart() {
+            if (!chartCtx || !allEmbeddingsData) return;
+            
+            // Set higher resolution (2x for better performance)
+            const dpr = 2; // Device pixel ratio
+            const width = chartCanvas.clientWidth;
+            const height = chartCanvas.clientHeight;
+            
+            // Set display size (css pixels)
+            chartCanvas.style.width = width + "px";
+            chartCanvas.style.height = height + "px";
+            
+            // Set actual size in memory (scaled to account for dpr)
+            chartCanvas.width = width * dpr;
+            chartCanvas.height = height * dpr;
+            
+            // Scale all drawing operations by the dpr
+            chartCtx.scale(dpr, dpr);
+            
+            // Clear canvas
+            chartCtx.clearRect(0, 0, width, height);
+            
+            // Find global min/max for scaling
+            let minX = Infinity, maxX = -Infinity;
+            let minY = Infinity, maxY = -Infinity;
+            
+            for (const filename in allEmbeddingsData) {
+                const data = allEmbeddingsData[filename];
+                const embeddings = data.embeddings;
+                for (const point of embeddings) {
+                    minX = Math.min(minX, point[0]);
+                    maxX = Math.max(maxX, point[0]);
+                    minY = Math.min(minY, point[1]);
+                    maxY = Math.max(maxY, point[1]);
+                }
+            }
+            
+            // Add some padding
+            const padding = 0.1;
+            const rangeX = maxX - minX;
+            const rangeY = maxY - minY;
+            
+            // Handle case where all points have the same X or Y value
+            if (rangeX === 0) {
+                minX -= 1;
+                maxX += 1;
+            }
+            if (rangeY === 0) {
+                minY -= 1;
+                maxY += 1;
+            }
+            
+            minX -= rangeX * padding;
+            maxX += rangeX * padding;
+            minY -= rangeY * padding;
+            maxY += rangeY * padding;
+            
+            // Limit X range to -7 to +7 for better zoom
+            minX = Math.max(minX, -7);
+            maxX = Math.min(maxX, 7);
+            
+            // Initialize waterfall buffer if needed (first time or size changed)
+            if (isLDA && (!waterfallBuffer || waterfallBuffer.width !== width)) {
+                initWaterfallBuffer(width, waterfallHeight);
+            }
+            
+            // Create or update background canvas if needed
+            if (!backgroundCanvas || !backgroundDrawn) {
+                if (!backgroundCanvas) {
+                    backgroundCanvas = document.createElement('canvas');
+                    backgroundCtx = backgroundCanvas.getContext('2d');
+                }
+                
+                // Set background canvas dimensions
+                backgroundCanvas.width = width;
+                backgroundCanvas.height = height;
+                
+                // Draw all trajectories as scatter plots in gray (batched) to background canvas
+                backgroundCtx.fillStyle = 'rgba(100, 100, 100, 0.1)';
+                for (const filename in allEmbeddingsData) {
+                    const data = allEmbeddingsData[filename];
+                    const embeddings = data.embeddings;
+                    if (embeddings.length === 0) continue;
+                    
+                    // Skip current file (will be drawn in color)
+                    if (filename === currentFilename) continue;
+                    
+                    // Batch draw scatter points
+                    for (let i = 0; i < embeddings.length; i++) {
+                        // Skip points with low peak values (silence threshold)
+                        const peakValue = data.peaks && i < data.peaks.length ? data.peaks[i] : 1.0;
+                        // Skip points below -36dB (approximately 0.01585 in linear scale)
+                        if (peakValue < AMPLITUDE_THRESHOLD) continue;
+                        
+                        const x = ((embeddings[i][0] - minX) / (maxX - minX)) * width;
+                        const y = height - ((embeddings[i][1] - minY) / (maxY - minY)) * height;
+                        // Check if coordinates are valid
+                        if (isNaN(x) || isNaN(y)) {
+                            continue;
+                        }
+                        backgroundCtx.fillRect(x - 1, y - 1, 2, 2); // Faster than arc
+                    }
+                }
+                
+                backgroundDrawn = true;
+            }
+            
+            // Draw background from offscreen canvas
+            chartCtx.drawImage(backgroundCanvas, 0, 0, width, height);
+            
+            // Draw current file as scatter plot
+            if (currentFilename && allEmbeddingsData[currentFilename]) {
+                const data = allEmbeddingsData[currentFilename];
+                const embeddings = data.embeddings;
+                if (embeddings.length > 0) {
+                    // Update played frames - add current frame and remove old ones
+                    if (currentFrame >= 0) {
+                        playedFrames.add(currentFrame);
+                        playedFrameAges[currentFrame] = FADE_DURATION;
+                    }
+                    
+                    // Decay played frames
+                    const framesToRemove = [];
+                    for (const frame of playedFrames) {
+                        if (playedFrameAges[frame] <= 1) {
+                            framesToRemove.push(frame);
+                            delete playedFrameAges[frame];
+                        } else {
+                            playedFrameAges[frame]--;
+                        }
+                    }
+                    // Remove decayed frames
+                    for (const frame of framesToRemove) {
+                        playedFrames.delete(frame);
+                    }
+                    
+                    // Draw all points with original opacity and fading highlights
+                    for (let i = 0; i < embeddings.length; i++) {
+                        // Skip points with low peak values (silence threshold)
+                        const peakValue = data.peaks && i < data.peaks.length ? data.peaks[i] : 1.0;
+                        // Skip points below -36dB (approximately 0.01585 in linear scale)
+                        if (peakValue < AMPLITUDE_THRESHOLD) continue;
+                        
+                        const x = ((embeddings[i][0] - minX) / (maxX - minX)) * width;
+                        const y = height - ((embeddings[i][1] - minY) / (maxY - minY)) * height;
+                        
+                        // Check if this frame has been recently played
+                        if (playedFrames.has(i)) {
+                            // Calculate fade progress (0 to 1, where 1 is fully faded)
+                            const age = playedFrameAges[i];
+                            const fadeProgress = age / FADE_DURATION;
+                            
+                            // Interpolate between original color and highlight color
+                            const baseR = 255, baseG = 215, baseB = 0, baseA = 0.3;
+                            const highlightR = 255, highlightG = 223, highlightB = 0, highlightA = 0.6;
+                            
+                            const r = Math.round(baseR + (highlightR - baseR) * (1 - fadeProgress));
+                            const g = Math.round(baseG + (highlightG - baseG) * (1 - fadeProgress));
+                            const b = Math.round(baseB + (highlightB - baseB) * (1 - fadeProgress));
+                            const a = baseA + (highlightA - baseA) * (1 - fadeProgress);
+                            
+                            chartCtx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
+                        } else {
+                            // Original color
+                            chartCtx.fillStyle = 'rgba(255, 215, 0, 0.3)';
+                        }
+                        
+                        chartCtx.beginPath();
+                        //chartCtx.arc(x, y, 3, 0, Math.PI * 2);
+                        chartCtx.fillRect(x, y, 2, 2);
+                        chartCtx.fill();
+                    }
+                    
+                    // Draw current position with trailing dots (onion skin effect)
+                    let currentX = 0, currentY = 0;
+                    if (currentFrame < embeddings.length && currentFrame >= 0) {
+                        // Draw up to 10 trailing dots with decreasing opacity
+                        for (let i = 0; i < 10; i++) {
+                            const frameIndex = currentFrame - i;
+                            if (frameIndex < 0) break;
+                            
+                            // Skip points with low peak values (silence threshold)
+                            const peakValue = data.peaks && frameIndex < data.peaks.length ? data.peaks[frameIndex] : 1.0;
+                            // Skip points below -36dB (approximately 0.01585 in linear scale)
+                            if (peakValue < AMPLITUDE_THRESHOLD) continue;
+                            
+                            const x = ((embeddings[frameIndex][0] - minX) / (maxX - minX)) * width;
+                            const y = height - ((embeddings[frameIndex][1] - minY) / (maxY - minY)) * height;
+                            
+                            // Store current position (most recent frame)
+                            if (i === 0) {
+                                currentX = embeddings[frameIndex][0];
+                                currentY = embeddings[frameIndex][1];
+                            }
+                            
+                            // Scale the dot size based on peak value (20% to 200% of original size)
+                            // Amplify the peaks so maximum size is reached at ~25% of previous level
+                            const minScale = 0.2;
+                            const maxScale = 2.0;
+                            // Amplify peak values by a factor of 4 to make peaks more pronounced
+                            const amplifiedPeakValue = Math.min(1.0, peakValue * 4);
+                            const scale = minScale + (maxScale - minScale) * amplifiedPeakValue;
+                            const dotRadius = 8 * scale;
+                            const ringRadius = 12 * scale;
+                            
+                            // Calculate opacity (decreasing for older frames)
+                            const opacity = Math.pow(0.5, i); // Multiply by 0.5 every frame
+                            
+                            // Draw dot with opacity
+                            chartCtx.beginPath();
+                            chartCtx.fillStyle = `rgba(255, 87, 34, ${opacity})`; // #FF5722 with opacity
+                            chartCtx.arc(x, y, dotRadius, 0, Math.PI * 2);
+                            chartCtx.fill();
+                            
+                            // Draw ring with opacity
+                            chartCtx.beginPath();
+                            chartCtx.strokeStyle = `rgba(255, 87, 34, ${opacity})`;
+                            chartCtx.lineWidth = 2;
+                            chartCtx.arc(x, y, ringRadius, 0, Math.PI * 2);
+                            chartCtx.stroke();
+                        }
+                    }
+                    
+                    // Update waterfall buffer with current position during playback
+                    // Always scroll waterfall during playback, even if current frame is skipped
+                    if (isLDA && isPlaying) {
+                        // Draw all dots from lastWaterfallFrame to currentFrame
+                        const startFrame = Math.max(0, lastWaterfallFrame + 1);
+                        const endFrame = Math.min(currentFrame, embeddings.length - 1);
+                        
+                        // Check if zero centering is enabled
+                        const zeroCenteringEnabled = document.getElementById('zero-centering').checked;
+                        
+                        // Collect all X values for moving average calculation
+                        const xValues = [];
+                        for (let frameIndex = startFrame; frameIndex <= endFrame; frameIndex++) {
+                            // For points with low peak values (silence threshold), use 0 if zero centering is enabled
+                            const peakValue = data.peaks && frameIndex < data.peaks.length ? data.peaks[frameIndex] : 1.0;
+                            // For points below -36dB (approximately 0.01585 in linear scale), use 0 if zero centering is enabled, otherwise use the actual value
+                            const x = (peakValue < AMPLITUDE_THRESHOLD && zeroCenteringEnabled) ? 0 : embeddings[frameIndex][0];
+                            xValues.push(x);
+                        }
+                        
+                        // Update moving average with all collected X values
+                        for (const x of xValues) {
+                            lastSamples.push(x);
+                            if (lastSamples.length > maxSamples) {
+                                lastSamples.shift(); // Remove oldest sample
+                            }
+                        }
+                        
+                        // Scroll waterfall buffer once before drawing all dots
+                        scrollWaterfallBuffer();
+                        
+                        // Draw all intermediate frames
+                        for (let frameIndex = startFrame; frameIndex <= endFrame; frameIndex++) {
+                            // Get peak value for the current frame
+                            const peakValue = data.peaks && frameIndex < data.peaks.length ? data.peaks[frameIndex] : 1.0;
+                            
+                            // Get X and Y values for the current frame
+                            const x = embeddings[frameIndex][0];
+                            const y = embeddings[frameIndex][1];
+                            
+                            // Set currentPeakValue to the peak value of the current frame
+                            currentPeakValue = peakValue;
+                            
+                            // Only draw waterfall dots for points above the silence threshold
+                            if (peakValue >= AMPLITUDE_THRESHOLD) {
+                                drawToWaterfallBuffer(x, y, minX, maxX, minY, maxY, width, height);
+                            }
+                        }
+                        
+                        // Update lastWaterfallFrame to currentFrame
+                        lastWaterfallFrame = currentFrame;
+                        
+                        // Always update the dial (moving average) on every frame
+                        // This ensures smooth dial movement during silence
+                        // If zero centering is enabled and no new frames were processed, add a zero value to gradually move toward zero
+                        // If zero centering is disabled and no new frames were processed, don't add any new values to maintain position
+                        // If new frames were processed, the moving average will be updated with actual values
+                        if (startFrame > endFrame && zeroCenteringEnabled) {
+                            lastSamples.push(0);
+                            if (lastSamples.length > maxSamples) {
+                                lastSamples.shift(); // Remove oldest sample
+                            }
+                        }
+                        // Update the dial with current moving average
+                        // We use 0 for both X and Y since we only care about updating the dial (moving average) and not drawing dots
+                        drawToWaterfallBuffer(0, 0, minX, maxX, minY, maxY, width, height, true);
+                    }
+                }
+            }
+            
+            // Draw axis labels
+            // Removed LDA Component axis labels as requested
+        }
+        
+        // Update status message
+        function updateStatus(message) {
+            statusElement.textContent = message;
+        }
+        
+        // Reset player
+        function resetPlayer() {
+            audioPlayer.src = '';
+            playBtn.disabled = true;
+            pauseBtn.disabled = true;
+            stopBtn.disabled = true;
+            currentFilename = null;
+            currentEmbeddings = null;
+            currentFrame = 0;
+            playedFrames.clear(); // Clear played frames tracking
+            lastWaterfallFrame = -1; // Reset waterfall frame tracking
+            
+            // Stop animation
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+            
+            // Clear chart
+            if (chartCtx) {
+                chartCtx.clearRect(0, 0, chartCanvas.width, chartCanvas.height);
+            }
+            
+            // Clear waterfall buffer if LDA mode
+            if (isLDA) {
+                clearWaterfallBuffer();
+            }
+            
+            updateStatus('Select an audio file to begin');
+        }
+        
+        // Initialize when page loads
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
